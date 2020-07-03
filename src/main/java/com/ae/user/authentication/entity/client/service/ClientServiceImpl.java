@@ -18,7 +18,6 @@ public class ClientServiceImpl implements ClientService {
         this.repository = repository;
     }
 
-
     @Transactional
     @Override
     public String createClient(final ClientModel client) {
@@ -28,8 +27,8 @@ public class ClientServiceImpl implements ClientService {
 
     @Transactional(readOnly = true)
     @Override
-    public ClientModel getClient(final ClientModel client) {
-        return repository.findById(client.getId()).get();
+    public ClientModel getClient(final Long clientId) {
+        return repository.findById(clientId).get();
     }
 
     @Transactional(readOnly = true)
@@ -43,7 +42,7 @@ public class ClientServiceImpl implements ClientService {
     public ClientModel updateClient(final ClientModel client) {
         if (validateClient(client)) {
             repository.save(client);
-            return getClient(client);
+            return getClient(client.getId());
         }
         return null;
     }
@@ -59,6 +58,6 @@ public class ClientServiceImpl implements ClientService {
     }
 
     private Boolean validateClient(final ClientModel client) {
-        return getClient(client) != null;
+        return getClient(client.getId()) != null;
     }
 }

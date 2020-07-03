@@ -16,10 +16,10 @@ public interface ClientService {
     String createClient(final ClientModel client);
 
     /**
-     * @param client to find in data base
+     * @param clientId to find in data base
      * @return client found
      */
-    ClientModel getClient(final ClientModel client);
+    ClientModel getClient(final Long clientId);
 
     /**
      * @return List of clients registered

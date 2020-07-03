@@ -8,12 +8,12 @@ import java.util.Date;
 @Table(name = "clients")
 public class ClientModel implements Serializable {
 
+    public ClientModel() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(unique = true, length = 40)
-    private String username;
 
     @Column(name = "name")
     private String name;

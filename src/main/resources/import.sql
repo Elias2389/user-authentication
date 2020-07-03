@@ -1,0 +1,5 @@
+--INSERT INTO `clients` (name, last_name, email) VALUES ('user', 'user1', 'prueba@gmail.com');
+--INSERT INTO `clients` (name, last_name, email) VALUES ('user 2', 'last name user 2', 'prueba@gmail.com');
+--INSERT INTO `clients` (name, last_name, email) VALUES ('user 3', 'last name', 'prueba@gmail.com');
+--INSERT INTO `clients` (name, last_name, email) VALUES ('user 4', 'last', 'prueba@gmail.com');
+--INSERT INTO `clients` (name, last_name, email) VALUES ('user 5', 'user', 'prueba@gmail.com');
