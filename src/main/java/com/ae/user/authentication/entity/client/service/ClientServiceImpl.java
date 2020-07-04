@@ -2,6 +2,7 @@ package com.ae.user.authentication.entity.client.service;
 
 import com.ae.user.authentication.entity.client.repository.ClientRepository;
 import com.ae.user.authentication.model.ClientModel;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,14 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService {
 
-    private final ClientRepository repository;
-
     @Autowired
-    public ClientServiceImpl(final ClientRepository repository) {
-        this.repository = repository;
-    }
+    private final ClientRepository repository;
 
     @Transactional
     @Override

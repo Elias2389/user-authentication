@@ -11,6 +11,14 @@ public class ClientModel implements Serializable {
     public ClientModel() {
     }
 
+    public ClientModel(Long id, String name, String lastName, String email, Date createAt) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.createAt = createAt;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -36,7 +36,7 @@ public class ClientController {
     @PutMapping("/client")
     public ClientModel updateClient(final @RequestBody ClientModel clientModel) {
         ClientModel model = service.updateClient(clientModel);
-        if ( model != null ) {
+        if (model != null) {
             return model;
         } else {
             return new ClientModel();
