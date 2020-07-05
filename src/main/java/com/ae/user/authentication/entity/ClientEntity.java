@@ -1,4 +1,4 @@
-package com.ae.user.authentication.model;
+package com.ae.user.authentication.entity;
 
 import lombok.*;
 
@@ -11,9 +11,9 @@ import java.util.Date;
 @Builder(toBuilder = true)
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
-@Setter(value = AccessLevel.PACKAGE)
+@Setter()
 @Getter
-public class ClientModel implements Serializable {
+public class ClientEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

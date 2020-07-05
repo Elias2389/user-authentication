@@ -1,7 +1,7 @@
-package com.ae.user.authentication.entity.client.controller;
+package com.ae.user.authentication.entities.client.controller;
 
-import com.ae.user.authentication.entity.client.service.ClientService;
-import com.ae.user.authentication.model.ClientModel;
+import com.ae.user.authentication.entities.client.service.ClientService;
+import com.ae.user.authentication.entity.ClientEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,23 +17,23 @@ public class ClientController {
     private final ClientService service;
 
     @PostMapping("/client")
-    String createClient(final @RequestBody ClientModel clientModel) {
-        return service.createClient(clientModel);
+    String createClient(final @RequestBody ClientEntity clientEntity) {
+        return service.createClient(clientEntity);
     }
 
     @GetMapping("/client/{clientId}")
-    public ClientModel getClient(final @PathVariable("clientId") Long clientId) {
+    public ClientEntity getClient(final @PathVariable("clientId") Long clientId) {
         return service.getClient(clientId);
     }
 
     @GetMapping("/client")
-    public List<ClientModel> getClients() {
+    public List<ClientEntity> getClients() {
         return service.getClients();
     }
 
     @PutMapping("/client")
-    public ClientModel updateClient(final @RequestBody ClientModel clientModel) {
-        ClientModel model = service.updateClient(clientModel);
+    public ClientEntity updateClient(final @RequestBody ClientEntity clientEntity) {
+        ClientEntity model = service.updateClient(clientEntity);
         if (model != null) {
             return model;
         } else {
@@ -42,7 +42,7 @@ public class ClientController {
     }
 
     @DeleteMapping("/client")
-    public String deleteClient(final ClientModel client) {
+    public String deleteClient(final ClientEntity client) {
         return service.deleteClient(client);
     }
 }

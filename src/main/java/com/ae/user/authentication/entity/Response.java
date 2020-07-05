@@ -1,4 +1,4 @@
-package com.ae.user.authentication.model;
+package com.ae.user.authentication.entity;
 
 import java.util.List;
 

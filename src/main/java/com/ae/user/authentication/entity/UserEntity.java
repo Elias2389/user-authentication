@@ -1,11 +1,11 @@
-package com.ae.user.authentication.model;
+package com.ae.user.authentication.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class UserModel implements Serializable {
+public class UserEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class UserModel implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    private List<RoleModel> roles;
+    private List<RoleEntity> roles;
 
     public Long getId() {
         return id;
@@ -55,11 +55,11 @@ public class UserModel implements Serializable {
         this.enabled = enabled;
     }
 
-    public List<RoleModel> getRoles() {
+    public List<RoleEntity> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<RoleModel> roles) {
+    public void setRoles(List<RoleEntity> roles) {
         this.roles = roles;
     }
 

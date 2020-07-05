@@ -1,6 +1,6 @@
-package com.ae.user.authentication.entity.client.service;
+package com.ae.user.authentication.entities.client.service;
 
-import com.ae.user.authentication.model.ClientModel;
+import com.ae.user.authentication.entity.ClientEntity;
 
 import java.util.List;
 
@@ -13,29 +13,29 @@ public interface ClientService {
      * @param client to save in data base
      * @return Message about transaction
      */
-    String createClient(final ClientModel client);
+    ClientEntity createClient(final ClientEntity client);
 
     /**
      * @param clientId to find in data base
      * @return client found
      */
-    ClientModel getClient(final Long clientId);
+    ClientEntity getClient(final Long clientId);
 
     /**
      * @return List of clients registered
      */
-    List<ClientModel> getClients();
+    List<ClientEntity> getClients();
 
     /**
      * @param client to uodate
      * @return updated client
      */
-    ClientModel updateClient(final ClientModel client);
+    ClientEntity updateClient(final ClientEntity client);
 
     /**
      * @param client to delete
      * @return deleted client
      */
-    String deleteClient(final ClientModel client);
+    String deleteClient(final ClientEntity client);
 
 }
