@@ -22,6 +22,12 @@ public interface ClientService {
     ClientEntity getClient(final Long clientId);
 
     /**
+     * @param username to find in data base
+     * @return client found
+     */
+    ClientEntity getClientByUsername(final String username);
+
+    /**
      * @return List of clients registered
      */
     List<ClientEntity> getClients();
@@ -37,5 +43,6 @@ public interface ClientService {
      * @return deleted client
      */
     String deleteClient(final ClientEntity client);
+
 
 }

@@ -4,6 +4,8 @@ import com.ae.user.authentication.entities.client.service.ClientService;
 import com.ae.user.authentication.entity.ClientEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,27 +19,30 @@ public class ClientController {
     private final ClientService service;
 
     @PostMapping("/client")
-    String createClient(final @RequestBody ClientEntity clientEntity) {
-        return service.createClient(clientEntity);
+    public ResponseEntity<ClientEntity> createClient(final @RequestBody ClientEntity clientEntity) {
+        ClientEntity client = service.createClient(clientEntity);
+        return  ResponseEntity.status(HttpStatus.CREATED).body(client);
     }
 
     @GetMapping("/client/{clientId}")
-    public ClientEntity getClient(final @PathVariable("clientId") Long clientId) {
-        return service.getClient(clientId);
+    public ResponseEntity<ClientEntity> getClient(final @PathVariable("clientId") Long clientId) {
+        ClientEntity client = service.getClient(clientId);
+        return ResponseEntity.ok(client);
     }
 
     @GetMapping("/client")
-    public List<ClientEntity> getClients() {
-        return service.getClients();
+    public ResponseEntity<List<ClientEntity>> getClients() {
+        List<ClientEntity> clients = service.getClients();
+        return ResponseEntity.ok(clients);
     }
 
     @PutMapping("/client")
-    public ClientEntity updateClient(final @RequestBody ClientEntity clientEntity) {
+    public ResponseEntity<ClientEntity> updateClient(final @RequestBody ClientEntity clientEntity) {
         ClientEntity model = service.updateClient(clientEntity);
         if (model != null) {
-            return model;
+            return ResponseEntity.ok(model);
         } else {
-            return null;
+            return ResponseEntity.notFound().build();
         }
     }
 

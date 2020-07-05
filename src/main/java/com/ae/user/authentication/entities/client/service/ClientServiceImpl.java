@@ -19,8 +19,9 @@ public class ClientServiceImpl implements ClientService {
     @Transactional
     @Override
     public ClientEntity createClient(final ClientEntity client) {
-        if (getClient(client.getId()) != null) {
-            return getClient(client.getId());
+        ClientEntity clientEntity = getClientByUsername(client.getUsername());
+        if (clientEntity != null) {
+            return clientEntity;
         }
         return repository.save(client);
     }
@@ -29,6 +30,11 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ClientEntity getClient(final Long clientId) {
         return repository.findById(clientId).orElse(null);
+    }
+
+    @Override
+    public ClientEntity getClientByUsername(String username) {
+        return repository.findByUsername(username);
     }
 
     @Transactional(readOnly = true)
@@ -57,4 +63,7 @@ public class ClientServiceImpl implements ClientService {
         }
         return "not done";
     }
+
+
+
 }
