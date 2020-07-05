@@ -2,6 +2,7 @@ package com.ae.user.authentication.entity.client.controller;
 
 import com.ae.user.authentication.entity.client.service.ClientService;
 import com.ae.user.authentication.model.ClientModel;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,14 +10,11 @@ import java.util.List;
 
 @RestController()
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class ClientController {
 
-    private final ClientService service;
-
     @Autowired
-    public ClientController(ClientService service) {
-        this.service = service;
-    }
+    private final ClientService service;
 
     @PostMapping("/client")
     String createClient(final @RequestBody ClientModel clientModel) {
@@ -39,7 +37,7 @@ public class ClientController {
         if (model != null) {
             return model;
         } else {
-            return new ClientModel();
+            return null;
         }
     }
 

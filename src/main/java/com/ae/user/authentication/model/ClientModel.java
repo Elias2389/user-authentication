@@ -1,23 +1,19 @@
 package com.ae.user.authentication.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "clients")
+@Builder(toBuilder = true)
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@Setter(value = AccessLevel.PACKAGE)
+@Getter
 public class ClientModel implements Serializable {
-
-    public ClientModel() {
-    }
-
-    public ClientModel(Long id, String name, String lastName, String email, Date createAt) {
-        this.id = id;
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-        this.createAt = createAt;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,45 +31,5 @@ public class ClientModel implements Serializable {
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
     private Date createAt;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Date getCreateAt() {
-        return createAt;
-    }
-
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
-    }
 
 }
