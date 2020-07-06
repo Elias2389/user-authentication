@@ -12,11 +12,14 @@ import java.util.List;
 
 @RestController()
 @RequestMapping("/api")
-@RequiredArgsConstructor
 public class ClientController {
 
-    @Autowired
     private final ClientService service;
+
+    @Autowired
+    public ClientController(ClientService service) {
+        this.service = service;
+    }
 
     @PostMapping("/client")
     public ResponseEntity<ClientEntity> createClient(final @RequestBody ClientEntity clientEntity) {

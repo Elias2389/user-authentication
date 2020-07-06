@@ -10,11 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService {
 
-    @Autowired
     private final ClientRepository repository;
+
+    @Autowired
+    public ClientServiceImpl(ClientRepository repository) {
+        this.repository = repository;
+    }
 
     @Transactional
     @Override
