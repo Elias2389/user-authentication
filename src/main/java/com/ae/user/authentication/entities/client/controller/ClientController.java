@@ -2,7 +2,6 @@ package com.ae.user.authentication.entities.client.controller;
 
 import com.ae.user.authentication.entities.client.service.ClientService;
 import com.ae.user.authentication.entity.ClientEntity;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

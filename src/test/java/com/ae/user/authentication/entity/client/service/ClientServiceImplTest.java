@@ -30,39 +30,45 @@ public class ClientServiceImplTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         clientService = new ClientServiceImpl(repository);
-        //clientEntity = new ClientEntity(1L, "Name", "Last name", "emial", new Date());
+        clientEntity = getClient();
 
+        Mockito.when(repository.save(clientEntity)).thenReturn(clientEntity);
+        Mockito.when(repository.findById(1L)).thenReturn(Optional.of(clientEntity));
+        Mockito.when(repository.findByUsername("username")).thenReturn(clientEntity);
+    }
 
+    private ClientEntity getClient() {
+        return  ClientEntity.builder()
+                .id(1L)
+                .name("User 1")
+                .lastName("Last Name 1")
+                .email("email@email.com")
+                .createAt(new Date())
+                .username("username")
+                .build();
     }
 
     @Test
     public void createClient() {
-        //ClientEntity clientEntityUpdate = new ClientEntity(1L, "Name4", "Last name4", "emial", new Date());
-       // Mockito.when(repository.save(clientEntityUpdate)).thenReturn(clientEntityUpdate);
-        //Mockito.when(repository.findById(1L)).thenReturn(Optional.of(clientEntityUpdate));
-
-        //String clientServiceCreate = clientService.createClient(clientEntityUpdate);
-        //Assertions.assertThat(clientServiceCreate).isEqualTo("done");
+        ClientEntity clientServiceCreate = clientService.createClient(clientEntity);
+        Assertions.assertThat(clientServiceCreate.getUsername()).isEqualTo("username");
     }
 
     @Test
     public void whenIsValidId_ReturnClient() {
-        Mockito.when(repository.findById(1L)).thenReturn(Optional.of(clientEntity));
         ClientEntity client = clientService.getClient(1L);
-        Assertions.assertThat(client.getName()).isEqualTo("Name");
+        Assertions.assertThat(client.getName()).isEqualTo("User 1");
     }
 
     @Test
     public void whenIsValid_UpdateReturnClient() {
-        //ClientEntity clientEntityUpdate = new ClientEntity(1L, "Name2", "Last name2", "emial", new Date());
-        //Mockito.when(repository.save(clientEntityUpdate)).thenReturn(clientEntityUpdate);
-        //Mockito.when(repository.findById(1L)).thenReturn(Optional.of(clientEntityUpdate));
-
-        //ClientEntity clientServiceUpdate = clientService.updateClient(clientEntityUpdate);
-        //Assertions.assertThat(clientServiceUpdate.getName()).isEqualTo("Name2");
+        ClientEntity clientServiceUpdate = clientService.updateClient(clientEntity);
+        Assertions.assertThat(clientServiceUpdate.getName()).isEqualTo("User 1");
     }
 
-
-    public void deleteClient() {
+    @Test
+    public void whenIsValid_UsernameReturnClient() {
+        ClientEntity clientServiceUpdate = clientService.getClientByUsername(clientEntity.getUsername());
+        Assertions.assertThat(clientServiceUpdate.getName()).isEqualTo("User 1");
     }
 }
