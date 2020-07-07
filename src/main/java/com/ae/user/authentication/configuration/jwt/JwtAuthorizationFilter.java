@@ -1,5 +1,6 @@
-package com.ae.user.authentication;
+package com.ae.user.authentication.configuration.jwt;
 
+import com.ae.user.authentication.configuration.auth.SimpleGrantedAuthorityMixin;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
