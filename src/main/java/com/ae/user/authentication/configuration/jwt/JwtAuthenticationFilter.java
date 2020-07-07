@@ -1,4 +1,4 @@
-package com.ae.user.authentication;
+package com.ae.user.authentication.configuration.jwt;
 
 import com.ae.user.authentication.entity.UserEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;

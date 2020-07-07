@@ -1,5 +1,7 @@
-package com.ae.user.authentication;
+package com.ae.user.authentication.configuration.auth;
 
+import com.ae.user.authentication.configuration.jwt.JwtAuthenticationFilter;
+import com.ae.user.authentication.configuration.jwt.JwtAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
