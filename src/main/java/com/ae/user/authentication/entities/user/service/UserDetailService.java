@@ -1,8 +1,8 @@
 package com.ae.user.authentication.entities.user.service;
 
 import com.ae.user.authentication.entities.user.repository.UserRepository;
+import com.ae.user.authentication.entity.ClientEntity;
 import com.ae.user.authentication.entity.RoleEntity;
-import com.ae.user.authentication.entity.UserEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class UserDetailService implements UserDetailsService {
     @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        UserEntity user =  repository.findByUsername(s);
+        ClientEntity user =  repository.findByUsername(s);
 
         if (user == null) {
             logger.error("Error login: No existe el usuario: " + s);

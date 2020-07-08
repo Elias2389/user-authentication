@@ -1,6 +1,6 @@
 package com.ae.user.authentication.configuration.jwt;
 
-import com.ae.user.authentication.entity.UserEntity;
+import com.ae.user.authentication.entity.ClientEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
@@ -43,13 +43,13 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
                                                 HttpServletResponse response) throws AuthenticationException {
-        UserEntity user = getUserEntity(request);
+        ClientEntity clientEntity = getClientEntity(request);
 
-        logger.info("Username: " + user.getUsername());
-        logger.info("Password: " + user.getPassword());
+        logger.info("Username: " + clientEntity.getUsername());
+        logger.info("Password: " + clientEntity.getPassword());
 
         return authenticationManager
-                .authenticate(getAuthenticationToken(user.getUsername(), user.getPassword()));
+                .authenticate(getAuthenticationToken(clientEntity.getUsername(), clientEntity.getPassword()));
     }
 
 
@@ -86,12 +86,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setContentType("application/json");
     }
 
-    private UserEntity getUserEntity(final HttpServletRequest request) {
+    private ClientEntity getClientEntity(final HttpServletRequest request) {
         try {
-            return new ObjectMapper().readValue(request.getInputStream(), UserEntity.class);
+            return new ObjectMapper().readValue(request.getInputStream(), ClientEntity.class);
         } catch (IOException e) {
             e.printStackTrace();
-            return new UserEntity();
+            return new ClientEntity();
         }
     }
 
