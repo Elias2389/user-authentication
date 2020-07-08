@@ -5,22 +5,20 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "clients")
 @Builder(toBuilder = true)
-@AllArgsConstructor(access = AccessLevel.PACKAGE)
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
-@Setter()
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
 @Getter
 public class ClientEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "username")
-    private String username;
 
     @Column(name = "name")
     private String name;
@@ -34,5 +32,18 @@ public class ClientEntity implements Serializable {
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
     private Date createAt;
+
+    @Column(unique = true, length = 40)
+    private String username;
+
+    @Column(length = 60)
+    private String password;
+
+    private Boolean enabled;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "client_id")
+    private List<RoleEntity> roles;
+
 
 }
